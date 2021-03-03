@@ -1,0 +1,72 @@
+<div class="main-div">
+    <mat-card fxFlex="75%" fxLayoutGap="10px">
+
+        <mat-card-header>
+            <mat-card-title> new visit </mat-card-title>
+        </mat-card-header>
+
+        <section>
+
+            <mat-card-content>
+                <section>
+                    <form fxFlex="100%" fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="space-around center"
+                        [formGroup]="visitForm">
+
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="complains" placeholder="complains"
+                                    required></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="examination" placeholder="examination"
+                                    required></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="general" placeholder="general"
+                                    required></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="systems" placeholder="systems"
+                                    required></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="investigations"
+                                    placeholder="investigations" required></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="plan" placeholder="plan"
+                                    required></textarea>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="treatment" placeholder="treatment"
+                                    required></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100%">
+                            <mat-form-field fxFlex="75%">
+                                <textarea matInput rows="5" formControlName="notes" placeholder="notes"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <button mat-raised-button type="button" (click)="onSubmit()" [disabled]="visitForm.invalid">
+                            submit </button>
+                    </form>
+                </section>
+            </mat-card-content>
+
+        </section>
+
+    </mat-card>
+</div>

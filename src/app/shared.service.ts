@@ -28,4 +28,10 @@ export class SharedService {
     apiUrl = this.baseURL + "api/users/byRole/" + roleId;
     return this.http.get(apiUrl, { headers: this.headers });
   }
+
+  addVisit(data:any){
+    let apiUrl: string;
+    apiUrl = this.baseURL + "api/Appointments";
+    return this.http.post(apiUrl, data, { headers: this.headers });
+  }
 }
