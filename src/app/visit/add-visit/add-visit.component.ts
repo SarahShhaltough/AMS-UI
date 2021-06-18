@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -11,19 +12,23 @@ import { SharedService } from 'src/app/shared.service';
 export class AddVisitComponent implements OnInit {
   
   visitForm: FormGroup;
-
-  constructor(private sharedService: SharedService, private titleService: Title) {
+  id:number;
+  
+  constructor(private sharedService: SharedService, private titleService: Title,private router: Router,private activatedRoute: ActivatedRoute) {
     this.titleService.setTitle("new visit");
   }
 
   ngOnInit(): void {
       this.setForm();
+      this.activatedRoute.params.subscribe(params => {
+        this.id = Number(params["id"]);
+      });
   }
 
   onSubmit() {
     let body: any =
     {
-      userID: 3,
+      userID: this.id,
       branchID: 1,
       cO: this.visitForm.value.complains,
       examination: this.visitForm.value.examination,
@@ -37,7 +42,8 @@ export class AddVisitComponent implements OnInit {
     }
 
     this.sharedService.addVisit(body).subscribe((res: any) => {
-              console.log({res});
+      this.router.navigate(['/patients']);
+
     })
   }
 

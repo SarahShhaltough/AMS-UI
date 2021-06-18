@@ -4,3 +4,23 @@
 @import '~primeng/resources/primeng.min.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-block{
+    font-size: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri,
+   'Trebuchet MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   background-color: #75B1D0;
+   margin-bottom: 10px;
+   color: white;
+   border: 1px solid currentColor;
+   border-radius: 20px;
+   height: 50px;
+}
+
+.mat-toolbar{
+    font-size: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri,
+     'Trebuchet MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: #75B1D0;
+     color: white;
+}

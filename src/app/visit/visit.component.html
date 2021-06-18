@@ -1,1 +1,32 @@
-<p>visit works!</p>
+<button mat-stroked-button (click)="addVisit()" class="btn-block" > + Add Visit</button>
+
+<p-table #searchTable [columns]="cols" [value]="visits" [reorderableColumns]="true" [paginator]="true" [rows]="10"
+    pageLinkSize="3" [rowsPerPageOptions]="[5,10,15,20,25]" [paginatorDropdownAppendTo]="'body'" [resetPageOnSort]=false
+    [responsive]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <span class="p-input-icon-right p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="searchTable.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-visit let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{visit[col.field]}}
+            </td>
+            
+        </tr>
+    </ng-template>
+</p-table>

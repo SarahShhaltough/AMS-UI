@@ -1,72 +1,67 @@
-<div class="main-div">
-    <mat-card fxFlex="75%" fxLayoutGap="10px">
 
+<mat-card class="main-card"  fxFlex="100%">
+    <mat-card class="box">
         <mat-card-header>
-            <mat-card-title> new visit </mat-card-title>
+            <mat-card-title> New visit </mat-card-title>
         </mat-card-header>
 
         <section>
+            <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="center center" >
+                <form [formGroup]="visitForm" (ngSubmit)="onSubmit()"
+                  fxLayout="column" fxFlex="50%" fxLayoutGap="10px" fxLayoutAlign="center">
+              
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="complains">Complains</mat-label>
 
-            <mat-card-content>
-                <section>
-                    <form fxFlex="100%" fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="space-around center"
-                        [formGroup]="visitForm">
+                                <textarea matInput rows="5" formControlName="complains" placeholder="Complains"
+                                    required></textarea>
+                            </mat-form-field>
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="examination">Examination</mat-label>
 
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
-                                <textarea matInput rows="5" formControlName="complains" placeholder="complains"
+                                <textarea matInput rows="5" formControlName="examination" placeholder="Examination"
                                     required></textarea>
                             </mat-form-field>
-                        </div>
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
-                                <textarea matInput rows="5" formControlName="examination" placeholder="examination"
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="general">General</mat-label>
+
+                                <textarea matInput rows="5" formControlName="general" placeholder="General"
                                     required></textarea>
                             </mat-form-field>
-                        </div>
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
-                                <textarea matInput rows="5" formControlName="general" placeholder="general"
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="systems">Systems</mat-label>
+
+                                <textarea matInput rows="5" formControlName="systems" placeholder="Systems"
                                     required></textarea>
                             </mat-form-field>
-                        </div>
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
-                                <textarea matInput rows="5" formControlName="systems" placeholder="systems"
-                                    required></textarea>
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="investigations">Investigations</mat-label>
+
                                 <textarea matInput rows="5" formControlName="investigations"
-                                    placeholder="investigations" required></textarea>
+                                    placeholder="Investigations" required></textarea>
                             </mat-form-field>
-                        </div>
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
-                                <textarea matInput rows="5" formControlName="plan" placeholder="plan"
-                                    required></textarea>
-                            </mat-form-field>
-                        </div>
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="plan">Plan</mat-label>
 
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
-                                <textarea matInput rows="5" formControlName="treatment" placeholder="treatment"
+                                <textarea matInput rows="5" formControlName="plan" placeholder="Plan"
                                     required></textarea>
                             </mat-form-field>
-                        </div>
-                        <div fxFlex="100%">
-                            <mat-form-field fxFlex="75%">
-                                <textarea matInput rows="5" formControlName="notes" placeholder="notes"></textarea>
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="treatment">Treatment</mat-label>
+
+                                <textarea matInput rows="5" formControlName="treatment" placeholder="Treatment"
+                                    required></textarea>
                             </mat-form-field>
-                        </div>
-                        <button mat-raised-button type="button" (click)="onSubmit()" [disabled]="visitForm.invalid">
-                            submit </button>
+                            <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+                                <mat-label for="Notes">Notes</mat-label>
+
+                                <textarea matInput rows="5" formControlName="notes" placeholder="Notes"></textarea>
+                            </mat-form-field>
+                        <button mat-stroked-button  class="btn-block"  [disabled]="visitForm.invalid">
+                            Add visit </button>
                     </form>
+                    </div>
                 </section>
-            </mat-card-content>
-
-        </section>
 
     </mat-card>
-</div>
+</mat-card>

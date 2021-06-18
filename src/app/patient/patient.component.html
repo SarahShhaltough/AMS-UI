@@ -1,3 +1,4 @@
+<!--
 <p></p>
 
 <p-table #searchTable [columns]="cols" [value]="patients" [reorderableColumns]="true" [paginator]="true" [rows]="10"
@@ -25,6 +26,47 @@
         <tr>
             <td *ngFor="let col of columns">
                 {{patient[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+-->
+<p></p>
+<button mat-stroked-button (click)="btnClick()" class="btn-block" > + Add Pateint</button>
+
+<p-table #searchTable [columns]="cols" [value]="patients" [reorderableColumns]="true" [paginator]="true" [rows]="10"
+    pageLinkSize="3" [rowsPerPageOptions]="[5,10,15,20,25]" [paginatorDropdownAppendTo]="'body'" [resetPageOnSort]=false
+    [responsive]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <span class="p-input-icon-right p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="searchTable.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-patient let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{patient[col.field]}}
+            </td>
+            <td (click)="addVisit(rowData.userID)">
+                add visit
+            </td>
+            <td (click)="getAllVisits(rowData.userID)">
+                history
             </td>
         </tr>
     </ng-template>

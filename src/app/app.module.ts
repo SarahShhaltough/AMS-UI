@@ -16,6 +16,19 @@ import { VisitComponent } from './visit/visit.component';
 import { PatientComponent } from './patient/patient.component';
 import { AddVisitComponent } from './visit/add-visit/add-visit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddPatientComponent } from './patient/add-patient/add-patient.component';
+
+import { MatButtonModule} from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserComponent,
     VisitComponent,
     PatientComponent,
-    AddVisitComponent
+    AddVisitComponent,
+    AddPatientComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +51,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    FlexLayoutModule
+    
+      FlexLayoutModule,
+      MatToolbarModule,
+      MatMenuModule,
+      MatIconModule,
+      MatButtonModule,
+      MatTableModule,
+      MatDividerModule,
+      MatSlideToggleModule,
+      MatSelectModule,
+      MatProgressSpinnerModule,
+      MatFormFieldModule,
+      MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

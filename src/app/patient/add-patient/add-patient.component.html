@@ -1,0 +1,128 @@
+<mat-card class="main-card"  fxFlex="100%">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title> New patient </mat-card-title>
+    </mat-card-header>
+  <section >
+    <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="center center" >
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()"
+      fxLayout="column" fxFlex="50%" fxLayoutGap="10px" fxLayoutAlign="center">
+  
+    <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label>Full Name</mat-label>
+      <input matInput
+      formControlName="userFullName"
+      id="userFullName" 
+      type="text"
+      placeholder="Full Name"
+      class="form-control">
+    </mat-form-field>
+  
+    <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label for="userPhoneNumber">Phone Number</mat-label>
+      <input matInput
+      formControlName="userPhoneNumber"
+      id="userPhoneNumber" 
+      type="number" 
+      placeholder="Phone Number"
+
+      class="form-control">
+    </mat-form-field>
+  
+    <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label for="age">Age</mat-label>
+        <input matInput
+      formControlName="age"
+      id="age" 
+      placeholder="Age"
+
+      type="number" >
+    </mat-form-field>
+  
+    <div class="form-group" fxFlex="50%">
+
+        <mat-radio-group fxFlex.xs="70%" fxLayout.xs="column" fxLayoutGap="20px" formControlName="gender">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+      </mat-radio-group>
+        </div>
+  
+      <div fxFlex="50%">
+        <mat-form-field fxFlex="100%" appearance="outline">
+          <mat-label for="education">Education</mat-label>
+          <mat-select formControlName="education">
+            <mat-option>please select</mat-option>
+            <mat-option *ngFor="let c of educationList" [value]="c.value">
+              {{c.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-group" fxFlex="50%">
+
+        <mat-radio-group fxFlex.xs="70%" fxLayout.xs="column" fxLayoutGap="15px" formControlName="maritalStatus">
+          <mat-radio-button value="single">Single</mat-radio-button>
+          <mat-radio-button value="married">Married</mat-radio-button>
+        </mat-radio-group>
+          </div>
+  
+      <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label for="job">Job</mat-label>
+      <input matInput
+      formControlName="job"
+      id="job" 
+      placeholder="Job"
+
+      type="text" >
+      </mat-form-field>
+  
+      <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label for="allergies">Allergies</mat-label>
+      <textarea matInput
+      formControlName="allergies"
+      id="allergies" 
+      placeholder="Allergies"
+
+      type="text" ></textarea>
+      </mat-form-field>
+  
+      <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label for="specialPrecautions">Special Precautions</mat-label>
+      <textarea matInput
+      formControlName="specialPrecautions"
+      id="specialPrecautions" 
+      type="text" 
+      placeholder="Special Precautions"
+
+      class="form-control"></textarea>
+      </mat-form-field>
+  
+      <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label for="pastHistory">Past History</mat-label>
+      <textarea matInput
+      formControlName="pastHistory"
+      id="pastHistory" 
+      type="text" 
+      placeholder="Past History"
+
+      class="form-control"></textarea>
+      </mat-form-field>
+  
+      <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
+      <mat-label for="familyHistory">Family History</mat-label>
+      <textarea matInput
+      formControlName="familyHistory"
+      id="familyHistory" 
+      type="text" 
+      placeholder="Family History"
+
+      class="form-control"></textarea>
+      </mat-form-field>
+  
+      <button mat-stroked-button  class="btn-block" > Add patient</button>
+      
+      </form>
+    </div>
+    </section>
+      </mat-card>

@@ -34,4 +34,17 @@ export class SharedService {
     apiUrl = this.baseURL + "api/Appointments";
     return this.http.post(apiUrl, data, { headers: this.headers });
   }
+
+  addUser(data){
+    let apiUrl: string;
+    apiUrl=this.baseURL+"api/Users";
+    return this.http.post(apiUrl,data,{headers:this.headers});
+  }
+
+  getVisits(patientId){
+    let apiUrl: string;
+    apiUrl = this.baseURL + "api/Appointments/all/" + patientId;
+    return this.http.get(apiUrl, { headers: this.headers });
+  }
+
 }
