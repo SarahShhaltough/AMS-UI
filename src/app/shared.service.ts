@@ -29,6 +29,12 @@ export class SharedService {
     return this.http.get(apiUrl, { headers: this.headers });
   }
 
+  getUser(id){
+    let apiUrl: string;
+    apiUrl = this.baseURL + "api/users/" + id;
+    return this.http.get(apiUrl, { headers: this.headers });
+  }
+
   addVisit(data:any){
     let apiUrl: string;
     apiUrl = this.baseURL + "api/Appointments";
@@ -41,10 +47,34 @@ export class SharedService {
     return this.http.post(apiUrl,data,{headers:this.headers});
   }
 
+  editUser(id, data){
+    let apiUrl: string;
+    apiUrl=this.baseURL+"api/Users/"+ id;
+    return this.http.put(apiUrl,data,{headers:this.headers});
+  }
+
+  deleteUser(id){
+    let apiUrl: string;
+    apiUrl=this.baseURL+"api/Users/"+id;
+    return this.http.delete(apiUrl,{headers:this.headers});
+  }
+
   getVisits(patientId){
     let apiUrl: string;
     apiUrl = this.baseURL + "api/Appointments/all/" + patientId;
     return this.http.get(apiUrl, { headers: this.headers });
+  }
+
+  getLastVisitData(id){
+    let apiUrl: string;
+    apiUrl = this.baseURL + "api/Users/note-data/" + id;
+    return this.http.get(apiUrl, { headers: this.headers });
+  }
+
+  deleteVisit(id){
+    let apiUrl: string;
+    apiUrl = this.baseURL + "api/Appointments/" + id;
+    return this.http.delete(apiUrl, { headers: this.headers });
   }
 
 }

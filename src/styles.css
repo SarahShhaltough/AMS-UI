@@ -24,3 +24,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
      background-color: #75B1D0;
      color: white;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+  }

@@ -99,4 +99,19 @@ getAllVisits(id:any){
 this.router.navigateByUrl('/visits/'+id);
 
 }
+
+editPatient(id:any){
+  this.router.navigateByUrl('/new-patient?id='+id);
+
+}
+
+deletePatient(id:any){
+
+  this.sharedService.deleteUser(id).subscribe((res: any) => {
+    this.getPatients();
+  },
+    error => {
+      console.log("error ",error);
+    });
+}
 }

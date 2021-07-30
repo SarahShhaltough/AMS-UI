@@ -20,14 +20,7 @@ export class VisitComponent implements OnInit {
       this.id = params["id"];
     });
 
-    this.sharedService.getVisits(this.id).subscribe((res: any) => {
-      Object.keys(res).map(r => {
-        this.visits = res;
-      });
-    },
-      error => {
-        console.log("error ",error);
-      });
+    this.getVisits(this.id);
 
       this.cols = [
         { field: 'co', header: 'CO' },
@@ -36,12 +29,39 @@ export class VisitComponent implements OnInit {
         { field: 'investigations', header: 'Investigations' },
         { field: 'notes', header: 'Notes' },
         { field: 'plan', header: 'Plan' },
-        { field: 'treatment', header: 'Treatment' }, // data should be added!!
+        { field: 'treatment', header: 'Treatment' }, 
+        { field: 'visitDate', header: 'visitDate' } 
       ];
+  }
+
+  getVisits(id:any){
+    this.sharedService.getVisits(id).subscribe((res: any) => {
+      Object.keys(res).map(r => {
+        this.visits = res;
+      });
+    },
+      error => {
+        console.log("error ",error);
+      });
   }
 
   addVisit(){
     this.router.navigateByUrl('/new-visit/'+this.id);
   }
+
+  editVisit(visitId:any){
+    this.router.navigateByUrl('/new-visit/'+this.id+'/'+visitId);
+  }
+
+  deleteVisit(id:any){
+  this.sharedService.deleteVisit(id).subscribe((res: any) => {
+    this.getVisits(this.id);
+  },
+    error => {
+      console.log("error ",error);
+    });
+  }
+
+  view(id:any){}
 
 }

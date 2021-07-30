@@ -1,7 +1,6 @@
-import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
 
 
@@ -10,10 +9,14 @@ import { SharedService } from 'src/app/shared.service';
   templateUrl: './add-patient.component.html',
   styleUrls: ['./add-patient.component.css']
 })
+
 export class AddPatientComponent implements OnInit {
   patientForm: FormGroup;
   educationList : any =[] ;
-  constructor(private router: Router,private sharedService: SharedService,) { }
+  patientId: any = 0;
+editMode:boolean = false;
+
+  constructor(private router: Router,private sharedService: SharedService,private activatedRoute: ActivatedRoute) { }
 
   initializeUserForm(){
     this.patientForm = new FormGroup({
@@ -34,14 +37,36 @@ export class AddPatientComponent implements OnInit {
   get f() { return this.patientForm.controls; }
 
   ngOnInit(): void {
-    this.initializeUserForm();
-    this.educationList = [{'value': '1', "viewValue":"xxx"}, {'value': '2', "viewValue":"yyy"}];
-    console.log("list ", this.educationList);
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.patientId = params['id'];
+      this.editMode = true;
+  });
+  if(this.editMode){
+    this.sharedService.getUser(this.patientId).subscribe(
+      (data: any) => {
+console.log({data})   
+this.patientForm.controls['userFullName'].setValue(data.userFullName);
+this.patientForm.controls['age'].setValue(data.age);
+this.patientForm.controls['gender'].setValue(data.gender);
+this.patientForm.controls['education'].setValue(data.education);
+this.patientForm.controls['maritalStatus'].setValue(data.maritalStatus);
+this.patientForm.controls['userPhoneNumber'].setValue(data.userPhoneNumber);
+this.patientForm.controls['job'].setValue(data.job);
+this.patientForm.controls['allergies'].setValue(data.allergies);
+this.patientForm.controls['specialPrecautions'].setValue(data.specialPrecautions);
+this.patientForm.controls['pastHistory'].setValue(data.pastHistory);
+this.patientForm.controls['familyHistory'].setValue(data.familyHistory);
+
+},
+      (err: any) => console.log(err));
+    //get patient data
   }
 
-  onSubmit() {
-      console.log(this.patientForm.value);
-   
+    this.initializeUserForm();
+    this.educationList = [{'value': '1', "viewValue":"xxx"}, {'value': '2', "viewValue":"yyy"}];
+  }
+
+  onSubmit() {   
     let body: any =
     {
       userFullName: this.patientForm.value.userFullName,
@@ -56,13 +81,22 @@ export class AddPatientComponent implements OnInit {
       pastHistory: this.patientForm.value.pastHistory,
       familyHistory: this.patientForm.value.familyHistory,
     };
-   
+
+   if(this.patientId){
+    this.sharedService.editUser(this.patientId, this.patientForm.value).subscribe(
+      (data: any) => {
+      this.router.navigate(['/patients']);
+    },
+      (err: any) => console.log(err));
+
+   }
+   else{
     this.sharedService.addUser(this.patientForm.value).subscribe(
       (data: any) => {
       this.router.navigate(['/patients']);
     },
       (err: any) => console.log(err));
-      
+  }
   }
 
 }

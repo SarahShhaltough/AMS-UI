@@ -11,12 +11,14 @@ const routes: Routes = [
   { path: 'patients', component: PatientComponent },
   { path: 'visits/:id', component: VisitComponent },
   { path: 'new-visit/:id', component: AddVisitComponent },
-  { path: 'new-patient', component: AddPatientComponent }
+  { path: 'new-visit/:id/:visitId', component: AddVisitComponent },
+  { path: 'new-patient', component: AddPatientComponent },
+  { path: '', component: LoginComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
 
+export class AppRoutingModule { }

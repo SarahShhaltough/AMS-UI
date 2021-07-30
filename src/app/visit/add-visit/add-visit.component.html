@@ -5,13 +5,27 @@
             <mat-card-title> New visit </mat-card-title>
         </mat-card-header>
 
+        <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar></div>
+              <mat-card-title>Important notes:</mat-card-title><br/>
+              <div>
+              <label *ngIf='res.allergies'>Allergies: {{res.allergies}}</label><br/>
+              <label *ngIf='res.specialPrecautions'>SpecialPrecautions: {{res.specialPrecautions}}</label><br/>
+              <label *ngIf='res.patientHistory'>PatientHistory: {{res.patientHistory}}</label><br/>
+              <label *ngIf='res.familyHitory'>FamilyHitory: {{res.familyHitory}}</label><br/>
+              <label *ngIf='res.notes'>Notes: {{res.notes}}</label><br/>
+            </div>
+            </mat-card-header>
+        </mat-card>
+
         <section>
             <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="center center" >
                 <form [formGroup]="visitForm" (ngSubmit)="onSubmit()"
                   fxLayout="column" fxFlex="50%" fxLayoutGap="10px" fxLayoutAlign="center">
               
                             <mat-form-field class="form-group" appearance="outline" fxFlex="50%">
-                                <mat-label for="complains">Complains</mat-label>
+                                <mat-label for="complains">Complaint</mat-label>
 
                                 <textarea matInput rows="5" formControlName="complains" placeholder="Complains"
                                     required></textarea>

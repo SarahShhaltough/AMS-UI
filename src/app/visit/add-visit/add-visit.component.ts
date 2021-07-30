@@ -12,17 +12,28 @@ import { SharedService } from 'src/app/shared.service';
 export class AddVisitComponent implements OnInit {
   
   visitForm: FormGroup;
+  historyForm: FormGroup;
   id:number;
-  
+  res: any; 
+  visitId:any;
+
   constructor(private sharedService: SharedService, private titleService: Title,private router: Router,private activatedRoute: ActivatedRoute) {
     this.titleService.setTitle("new visit");
   }
 
   ngOnInit(): void {
-      this.setForm();
+      this.setForms();
       this.activatedRoute.params.subscribe(params => {
+        console.log({params})
         this.id = Number(params["id"]);
+        this.visitId = params["visitId"]; 
       });
+      //get user data from allg. and last visit
+      this.sharedService.getLastVisitData(this.id).subscribe((res: any) => {
+        console.log("res", res);
+        this.res = res;
+        this.historyForm.controls['notes'].setValue(res.notes);
+      })
   }
 
   onSubmit() {
@@ -47,7 +58,7 @@ export class AddVisitComponent implements OnInit {
     })
   }
 
-  setForm() {
+  setForms() {
     this.visitForm = new FormGroup({
       complains: new FormControl(null, [Validators.required, Validators.maxLength(4000)]),
       examination: new FormControl(null, [Validators.required, Validators.maxLength(4000)]),
@@ -58,5 +69,10 @@ export class AddVisitComponent implements OnInit {
       treatment: new FormControl(null, [Validators.required, Validators.maxLength(4000)]),
       notes: new FormControl(null, [Validators.maxLength(4000)]),
     });
+  
+
+  this.historyForm = new FormGroup({
+    notes: new FormControl(null, [Validators.maxLength(4000)]),
+  });
   }
 }
